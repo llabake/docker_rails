@@ -1,22 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-import {
-  Container,
-  CircularProgress,
-  Box,
-  Snackbar,
-} from '@material-ui/core';
-import { Alert } from '@material-ui/lab';
-import TaskList from './TaskList';
+import { Container, CircularProgress, Box, Snackbar } from "@material-ui/core";
+import { Alert } from "@material-ui/lab";
+import TaskList from "./TaskList";
 
-import Nav from './Nav';
+import Nav from "./Nav";
 
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState({
-    description: '',
-    avatar_url: '',
+    description: "",
+    avatar_url: "",
     completed: false,
   });
   const [isLoading, setIsLoading] = useState(false);
@@ -24,15 +19,15 @@ const App = () => {
   const [newTaskAdded, setNewTaskAdded] = useState(false);
   const [showNotification, setShowNotification] = useState({
     status: false,
-    message: '',
-    severity: 'success',
+    message: "",
+    severity: "success",
   });
 
   useEffect(() => {
     let isSubscribed = true;
     setIsLoading(true);
     axios
-      .get('/tasks')
+      .get("/tasks")
       .then((res) => {
         setIsError(false);
         setTasks(res.data);
@@ -62,11 +57,11 @@ const App = () => {
       completed: !selectedTask.completed,
     };
     axios.put(`/tasks/${selectedTask.id}`, updatedSelectedTask).then((res) => {
-      setTask(updatedSelectedTask);
+      setTask(res.data);
       setShowNotification({
         ...showNotification,
         status: true,
-        message: 'Task successfully updated',
+        message: "Task successfully updated",
       });
     });
   };
@@ -89,13 +84,13 @@ const App = () => {
         )}
         <Snackbar
           autoHideDuration={3000}
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
           open={showNotification.status}
           onClose={handleSnackbarClose}
         >
           <Alert
             onClose={handleSnackbarClose}
-            severity={showNotification.severity || 'success'}
+            severity={showNotification.severity || "success"}
           >
             {showNotification.message}
           </Alert>

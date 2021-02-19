@@ -47,7 +47,7 @@ To install:
 
 #### Database
 
-This application makes use of the SQLite database for local development
+This application makes use of the Postgres database for local development
 
 ## Installation
 
@@ -55,12 +55,12 @@ To get up and running with the project locally, follow the following steps.
 
 - Clone the app
 
-        git clone https://gitlab.com/llabake/codingchallenge.git
+        git clone https://github.com/llabake/docker_rails.git
 
 - Move into the directory and install all the requirements.
 
   ```bash
-  cd codingchallenge/
+  cd docker_rails/
 
   bundle install
   ```

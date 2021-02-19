@@ -19,7 +19,7 @@ class TasksController < ApplicationController
   def update
     task = Task.find(params[:id])
 
-    if task.update(completed_at: Time.now)
+    if task.update(completed_at: Time.now, completed: task_params[:completed])
       render json: task, status: :ok
     else
       render json: { error: task.errors.messages }, status: :unprocessable_entity
@@ -29,6 +29,6 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:description, :avatar_url, :completed)
+    params.require(:task).permit(:description, :avatar_url, :completed, :completed_at)
   end
 end
