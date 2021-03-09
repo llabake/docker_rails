@@ -3,23 +3,25 @@ pipeline {
   
   stages {
     
-    stage ("build") {
+    stage ("requirements") {
       steps {
-        echo "building the app"
+        echo "Setting app requirement"
+        sh 'gem install bundler -v 2.0.1'
       }
       
+    }
+    
+    stage('build') {
+      steps {
+        echo "installing app dependecies"
+        sh 'bundle install'
+      }
     }
     
    stage ("test") {
       steps {
         echo "testing the app"
-      }
-      
-    }
-    
-   stage ("deploy") {
-      steps {
-        echo "deploying the app"
+        sh 'bundle exec rspec 
       }
       
     }
