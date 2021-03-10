@@ -2,7 +2,6 @@ language: ruby
 
 rvm:
  - 2.7.1
- - jruby
 
 cache:
   - bundler
@@ -15,9 +14,9 @@ services:
   - postgresql
 
 script:
+  - bundle install --jobs=3 --retry=3
+  - RAILS_ENV=test bundle exec rake db:create db:migrate --trace
   - bundle exec rspec
 
 before_script:
-  - bundle install --jobs=3 --retry=3
   - cp config/database.travis.yml config/database.yml
-  - RAILS_ENV=test bundle exec rake db:create db:migrate --trace
