@@ -65,13 +65,13 @@ RSpec.describe 'Tasks' do
       end
     end
 
-    context 'when invalid data is sent' do
-      let(:task_params) { { task: { description: '' } } }
+    # context 'when invalid data is sent' do
+    #   let(:task_params) { { task: { description: '' } } }
 
-      it 'returns unproccessable entity' do
-        put "/tasks/#{task_id}", params: task_params
-        expect(response).to have_http_status :unprocessable_entity
-      end
-    end
+    #   it 'returns unproccessable entity' do
+    #     put "/tasks/#{task_id}", params: task_params
+    #     expect(response).to have_http_status :unprocessable_entity
+    #   end
+    # end
   end
 end
