@@ -28,14 +28,14 @@ jobs:
           username: mydockerhub-user
           password: $DOCKERHUB_PASSWORD
         environment:
-          POSTGRES_USER: docker_rails
+          POSTGRES_USER: postgres
           POSTGRES_PASSWORD: " "
           POSTGRES_DB: docker_rails_test
     environment:
       BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
       PGHOST: 127.0.0.1
-      PGUSER: docker_rails
+      PGUSER: postgres
       PGPASSWORD: ""
       RAILS_ENV: test
 
